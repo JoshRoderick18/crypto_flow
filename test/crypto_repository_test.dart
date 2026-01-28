@@ -24,9 +24,10 @@ void main() {
     when(() => mockRemote.getAll()).thenThrow(Exception());
     when(() => mockLocal.getLastCryptos()).thenAnswer((_) async => [const CryptoModel(id: '1', symbol: 'x', name: 'x', imageUrl: 'x', currentPrice: 1)]);
 
-    final result = await repo.getCryptos();
+    final (cryptos, isOffline) = await repo.getCryptos();
 
-    expect(result.length, 1);
+    expect(cryptos.length, 1);
+    expect(isOffline, true);
     verify(() => mockLocal.getLastCryptos()).called(1);
   });
 }
