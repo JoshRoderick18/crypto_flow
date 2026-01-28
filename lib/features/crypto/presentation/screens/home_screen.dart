@@ -22,6 +22,27 @@ class HomeScreen extends ConsumerWidget {
       }
     });
 
+    ref.listen(globalMessageProvider, (previous, next) {
+      if (next != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Row(
+              children: [
+                const Icon(Icons.wifi_off, color: Colors.white),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(next, style: const TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+            backgroundColor: Colors.orange,
+            duration: const Duration(seconds: 3),
+          ),
+        );
+        ref.read(globalMessageProvider.notifier).state = null;
+      }
+    });
+
     return Scaffold(
       appBar: AppBar(title: const Text('Crypto Flow')),
       body: Column(
