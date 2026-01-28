@@ -22,7 +22,7 @@ class CoinVaultApp extends StatelessWidget {
     return MaterialApp(
       title: 'Coin Vault',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.greenAccent),
       home: const HomeScreen(),
     );
   }
