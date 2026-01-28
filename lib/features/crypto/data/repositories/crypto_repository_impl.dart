@@ -11,18 +11,18 @@ class CryptoRepositoryImpl implements CryptoRepository {
   CryptoRepositoryImpl(this.remoteDataSource, this.localDataSource);
 
   @override
-  Future<List<CryptoEntity>> getCryptos() async {
+  Future<(List<CryptoEntity>, bool)> getCryptos() async {
     try {
       final models = await remoteDataSource.getAll();
 
       await localDataSource.cacheCryptos(models);
 
-      return models.map((e) => e.toEntity()).toList();
+      return (models.map((e) => e.toEntity()).toList(), false);
     } catch (e) {
       try {
         final localModels = await localDataSource.getLastCryptos();
         if (localModels.isNotEmpty) {
-          return localModels.map((e) => e.toEntity()).toList();
+          return (localModels.map((e) => e.toEntity()).toList(), true);
         }
         throw Exception('No internet and no cache data');
       } catch (_) {
