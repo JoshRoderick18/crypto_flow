@@ -1,4 +1,3 @@
-// Infra
 import 'package:crypto_flow/core/http_client.dart';
 import 'package:crypto_flow/features/crypto/data/datasources/crypto_local_data_source.dart';
 import 'package:crypto_flow/features/crypto/data/datasources/crypto_remote_data_source.dart';
@@ -18,3 +17,5 @@ final localDSProvider = Provider((ref) => CryptoLocalDataSource(ref.read(cryptoB
 
 final cryptoRepositoryProvider = Provider<CryptoRepository>((ref) => CryptoRepositoryImpl(ref.read(remoteDSProvider), ref.read(localDSProvider)));
 final cryptoNotifierProvider = AsyncNotifierProvider.autoDispose<CryptoNotifier, List<CryptoEntity>>(() => CryptoNotifier());
+
+final globalMessageProvider = StateProvider<String?>((ref) => null);
