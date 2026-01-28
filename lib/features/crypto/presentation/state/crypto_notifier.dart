@@ -14,7 +14,14 @@ class CryptoNotifier extends AutoDisposeAsyncNotifier<List<CryptoEntity>> {
 
     final repository = ref.read(cryptoRepositoryProvider);
 
-    _fullList = await repository.getCryptos();
+    final (cryptos, isOffline) = await repository.getCryptos();
+    _fullList = cryptos;
+
+    if (isOffline) {
+      Future.microtask(() {
+        ref.read(globalMessageProvider.notifier).state = 'Sin conexión a internet. Mostrando datos offline.';
+      });
+    }
 
     return _fullList;
   }
