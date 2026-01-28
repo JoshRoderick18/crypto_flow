@@ -1,5 +1,6 @@
 import 'package:crypto_flow/features/crypto/presentation/providers/crypto_providers.dart';
 import 'package:crypto_flow/features/crypto/presentation/widgets/crypto_image.dart';
+import 'package:crypto_flow/features/crypto/presentation/widgets/loading_skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -94,7 +95,7 @@ class HomeScreen extends ConsumerWidget {
                     ],
                   ),
                 ),
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const LoadingSkeleton(),
               ),
             ),
           ),
