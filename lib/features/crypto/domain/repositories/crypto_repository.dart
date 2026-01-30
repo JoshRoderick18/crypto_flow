@@ -1,5 +1,7 @@
-import 'package:crypto_flow/features/crypto/domain/entities/crypto_entity.dart';
+import 'package:crypto_flow/core/error/failures.dart';
+import 'package:crypto_flow/core/result/result.dart';
+import 'package:crypto_flow/features/crypto/domain/usecases/get_cryptos_usecase.dart';
 
 abstract class CryptoRepository {
-  Future<(List<CryptoEntity>, bool)> getCryptos();
+  Future<Result<CryptosResponse, AppFailure>> getCryptos();
 }
