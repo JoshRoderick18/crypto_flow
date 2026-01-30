@@ -6,6 +6,8 @@ part 'crypto_model.g.dart';
 
 @freezed
 class CryptoModel with _$CryptoModel {
+  const CryptoModel._();
+
   const factory CryptoModel({
     required String id,
     required String symbol,
@@ -15,8 +17,6 @@ class CryptoModel with _$CryptoModel {
   }) = _CryptoModel;
 
   factory CryptoModel.fromJson(Map<String, dynamic> json) => _$CryptoModelFromJson(json);
-}
 
-extension CryptoModelX on CryptoModel {
   CryptoEntity toEntity() => CryptoEntity(id: id, symbol: symbol, name: name, imageUrl: imageUrl, currentPrice: currentPrice);
 }

@@ -171,14 +171,14 @@ class __$$CryptoModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CryptoModelImpl implements _CryptoModel {
+class _$CryptoModelImpl extends _CryptoModel {
   const _$CryptoModelImpl({
     required this.id,
     required this.symbol,
     required this.name,
     @JsonKey(name: 'image') required this.imageUrl,
     @JsonKey(name: 'current_price') required this.currentPrice,
-  });
+  }) : super._();
 
   factory _$CryptoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CryptoModelImplFromJson(json);
@@ -234,7 +234,7 @@ class _$CryptoModelImpl implements _CryptoModel {
   }
 }
 
-abstract class _CryptoModel implements CryptoModel {
+abstract class _CryptoModel extends CryptoModel {
   const factory _CryptoModel({
     required final String id,
     required final String symbol,
@@ -242,6 +242,7 @@ abstract class _CryptoModel implements CryptoModel {
     @JsonKey(name: 'image') required final String imageUrl,
     @JsonKey(name: 'current_price') required final double currentPrice,
   }) = _$CryptoModelImpl;
+  const _CryptoModel._() : super._();
 
   factory _CryptoModel.fromJson(Map<String, dynamic> json) =
       _$CryptoModelImpl.fromJson;
